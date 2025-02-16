@@ -1,42 +1,35 @@
-// practice03.cpp (Buggy Code to be tested)
-#include <iostream>
+#include <gtest/gtest.h>
 #include <vector>
- 
-class MathUtils {
-public:
-  static int sumRange(int start, int end) {
-    int sum = 0;
-    for (int i = start; i < end; i++) { // Bug: Off-by-one error
-      sum += i;
-    }
-    return sum;
-  }
-   
-  static bool containsNegative(const std::vector<int>& numbers) {
-    for (size_t i = 0; i <= numbers.size(); i++) { // Bug
-      if (numbers[i] > 0) { // Bug
-        return true;
-      }
-    }
-    return false;
-  }
-   
-  static int findMax(const std::vector<int>& numbers) {
-    if (numbers.empty()) return 0; // Bug
-    int maxVal = numbers[0];
-    for (size_t i = 1; i <= numbers.size(); i++) { // Bug
-      if (numbers[i] >= maxVal) { // Bug
-        maxVal = numbers[i];
-      }
-    }
-    return maxVal;
-  }
-};
- 
-int main() {
-  std::cout << "Sum from 1 to 5: " << MathUtils::sumRange(1, 5) << std::endl;
+#include <climits>  // For INT_MIN
+
+// Include the MathUtils class from the fixed practice03.cpp
+#include "practice03.cpp"
+
+TEST(MathUtilsTests, SumRangeTest) {
+  // Test with standard range
+  EXPECT_EQ(MathUtils::sumRange(1, 5), 15); // 1 + 2 + 3 + 4 + 5 = 15
+  // Test when start == end
+  EXPECT_EQ(MathUtils::sumRange(5, 5), 5); // Only 5
+  // Test with negative numbers
+  EXPECT_EQ(MathUtils::sumRange(-5, -1), -15); // -5 + -4 + -3 + -2 + -1 = -15
+}
+
+TEST(MathUtilsTests, ContainsNegativeTest) {
+  std::vector<int> values = {3, 5, 7};
+  EXPECT_FALSE(MathUtils::containsNegative(values)); // No negative numbers
+  values = {3, -1, 5, 7};
+  EXPECT_TRUE(MathUtils::containsNegative(values)); // Contains negative
+  values = {};
+  EXPECT_FALSE(MathUtils::containsNegative(values)); // Empty vector
+}
+
+TEST(MathUtilsTests, FindMaxTest) {
   std::vector<int> values = {3, -1, 5, 7};
-  std::cout << "Contains negative? " << MathUtils::containsNegative(values) << std::endl;
-  std::cout << "Max value: " << MathUtils::findMax(values) << std::endl;
-  return 0;
+  EXPECT_EQ(MathUtils::findMax(values), 7); // Max is 7
+  values = {-5, -3, -1, -7};
+  EXPECT_EQ(MathUtils::findMax(values), -1); // Max is -1
+  values = {};
+  EXPECT_EQ(MathUtils::findMax(values), INT_MIN); // Empty vector should return INT_MIN
+  values = {3, 3, 3};
+  EXPECT_EQ(MathUtils::findMax(values), 3); // All values are the same
 }
