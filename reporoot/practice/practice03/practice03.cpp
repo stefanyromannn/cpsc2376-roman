@@ -1,13 +1,12 @@
-// practice03.cpp (Fixed code)
 #include <iostream>
 #include <vector>
-#include <climits> // For INT_MIN
+#include <climits> 
 
 class MathUtils {
 public:
   static int sumRange(int start, int end) {
     int sum = 0;
-    for (int i = start; i <= end; i++) { // Fixed: Changed < to <=
+    for (int i = start; i <= end; i++) { 
       sum += i;
     }
     return sum;
