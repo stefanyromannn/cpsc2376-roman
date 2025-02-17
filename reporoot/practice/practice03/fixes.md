@@ -1,13 +1,20 @@
-# Bugs and Fixes
+# Bugs and Fixes in `practice03.cpp`
 
-## Bug 1: Off-by-one error in `sumRange`
-- **Issue:** The loop in `sumRange` was using `i < end`, which caused it to exclude the `end` value from the sum.
-- **Fix:** Changed the loop condition from `i < end` to `i <= end`.
+## 1. Bug in `sumRange`
+   - **Bug**: The loop in `sumRange` uses the condition `i < end`, which causes it to exclude the `end` value.
+   - **Fix**: Change the loop condition to `i <= end` to include the `end` value in the sum.
 
-## Bug 2: Incorrect loop condition and logic in `containsNegative`
-- **Issue:** The loop condition in `containsNegative` was using `i <= numbers.size()`, which caused an out-of-bounds access at the end of the loop. Additionally, it incorrectly checked for positive numbers instead of negative numbers.
-- **Fix:** Changed the loop condition to `i < numbers.size()`, and changed the logic to `numbers[i] < 0`.
+## 2. Bug in `containsNegative`
+   - **Bug 1**: The loop condition `i <= numbers.size()` causes out-of-bounds access.
+   - **Fix 1**: Change the loop condition to `i < numbers.size()`.
+   - **Bug 2**: The logic for detecting negative numbers is reversed.
+   - **Fix 2**: Change `if (numbers[i] > 0)` to `if (numbers[i] < 0)` to correctly detect negative numbers.
 
-## Bug 3: Incorrect handling of empty list and off-by-one error in `findMax`
-- **Issue:** The function `findMax` returned `0` for an empty list, which could be incorrect. It also had an off-by-one error in the loop, checking `i <= numbers.size()`, which caused an out-of-bounds access.
-- **Fix:** Changed the empty list return value to `INT_MIN` and fixed the loop condition to `i < numbers.size()`.
+## 3. Bug in `findMax`
+   - **Bug 1**: The loop condition `i <= numbers.size()` causes out-of-bounds access.
+   - **Fix 1**: Change the loop condition to `i < numbers.size()`.
+   - **Bug 2**: The return value for an empty vector should not be `0`.
+   - **Fix 2**: Return `INT_MIN` for an empty vector instead of `0`.
+
+## Additional Information
+These bugs were causing incorrect behavior in the program, especially with edge cases such as empty lists and off-by-one errors.

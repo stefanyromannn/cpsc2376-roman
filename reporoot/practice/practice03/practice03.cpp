@@ -1,21 +1,20 @@
-// practice03.cpp (Fixed code)
 #include <iostream>
 #include <vector>
-#include <climits> // For INT_MIN
+#include <climits> 
 
 class MathUtils {
 public:
   static int sumRange(int start, int end) {
     int sum = 0;
-    for (int i = start; i <= end; i++) { // Fixed: Changed < to <=
+    for (int i = start; i <= end; i++) { 
       sum += i;
     }
     return sum;
   }
 
   static bool containsNegative(const std::vector<int>& numbers) {
-    for (size_t i = 0; i < numbers.size(); i++) { // Fixed: Changed <= to <
-      if (numbers[i] < 0) { // Fixed: Changed > to <
+    for (size_t i = 0; i < numbers.size(); i++) { 
+      if (numbers[i] < 0) { 
         return true;
       }
     }
@@ -23,10 +22,10 @@ public:
   }
 
   static int findMax(const std::vector<int>& numbers) {
-    if (numbers.empty()) return INT_MIN; // Fixed: Return INT_MIN for empty list
+    if (numbers.empty()) return INT_MIN; 
     int maxVal = numbers[0];
-    for (size_t i = 1; i < numbers.size(); i++) { // Fixed: Changed <= to <
-      if (numbers[i] > maxVal) { // Fixed: Changed >= to >
+    for (size_t i = 1; i < numbers.size(); i++) {
+      if (numbers[i] >= maxVal) {
         maxVal = numbers[i];
       }
     }
