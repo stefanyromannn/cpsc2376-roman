@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Define the project name
+project(MathUtilsTests)
+
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 11)
+
+# Add GoogleTest subdirectory (or you can install it separately)
+add_subdirectory(googletest)
+
+# Enable testing
+enable_testing()
+
+# Include the practice folder
+include_directories(practice)
+
+# Add the test executable
+add_executable(practice03_tests tests/practice03_test/practice03_test.cpp)
+
+# Link the GoogleTest library
+target_link_libraries(practice03_tests gtest gtest_main pthread)
+
+# Add test case
+add_test(NAME practice03_tests COMMAND practice03_tests)
