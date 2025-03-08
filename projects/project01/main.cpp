@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int SIZE = 5;  // 5x5 grid
+const int SIZE = 5;  
 
 vector<vector<char>> board;
 int playerScores[2] = {0, 0};
@@ -16,10 +16,10 @@ void makeBoard() {
 
     board.resize(rows, vector<char>(cols, ' '));
 
-    // Place dots on the board (using even rows and columns)
+ 
     for (int i = 0; i < rows; i += 2) {
         for (int j = 0; j < cols; j += 2) {
-            board[i][j] = '.';  // Place dot at every even index
+            board[i][j] = '.';  
         }
     }
 }
@@ -37,7 +37,7 @@ bool drawLine(int row, int col, string direction) {
     if (direction == "horizontal") {
         if (row % 2 == 0 && col + 1 < SIZE * 2 - 1) {
             if (board[row][col + 1] == '-') {
-                return false;  // Already a horizontal line
+                return false; 
             }
             board[row][col + 1] = '-';
             return true;
@@ -45,7 +45,7 @@ bool drawLine(int row, int col, string direction) {
     } else if (direction == "vertical") {
         if (col % 2 == 0 && row + 1 < SIZE * 2 - 1) {
             if (board[row + 1][col] == '|') {
-                return false;  // Already a vertical line
+                return false; 
             }
             board[row + 1][col] = '|';
             return true;
@@ -55,23 +55,23 @@ bool drawLine(int row, int col, string direction) {
 }
 
 bool getInput(int& row, int& col, string& direction) {
-    // Clear the input buffer by ignoring any residual characters
+
     cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Ignore leftover characters
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     cout << "Enter your move (row, column, direction [horizontal/vertical]): ";
-    cout.flush();  // Ensure the prompt is printed immediately
+    cout.flush(); 
 
-    char comma;  // To consume the commas between inputs
+    char comma; 
     cin >> row >> comma >> col >> comma >> direction;
 
-    // Check if the row and col are valid (1-based indexing)
+  
     if (row < 1 || col < 1 || row > SIZE || col > SIZE) {
         cout << "Invalid row or column! Please try again." << endl;
         return false;
     }
 
-    // Check if direction is valid
+ 
     if (direction != "horizontal" && direction != "vertical") {
         cout << "Invalid direction! Please enter 'horizontal' or 'vertical'." << endl;
         return false;
@@ -81,7 +81,7 @@ bool getInput(int& row, int& col, string& direction) {
 }
 
 bool gameStatus() {
-    // Check if all the squares are completed
+    
     for (int row = 1; row < SIZE * 2 - 2; row += 2) {
         for (int col = 1; col < SIZE * 2 - 2; col += 2) {
             if (board[row - 1][col] != '-' || 
@@ -92,58 +92,58 @@ bool gameStatus() {
             }
         }
     }
-    return true;  // All squares are completed
+    return true;  
 }
 
 void playGame() {
     int row, col;
     string direction;
-    int currentPlayer = 0;  // Player 1 starts (0 = Player 1, 1 = Player 2)
+    int currentPlayer = 0; 
 
-    // Print the welcome message at the start
+
     cout << "Welcome to Dots and Boxes!" << endl;
 
-    // Immediately display the board after the game starts
-    displayBoard();  // Display the initial empty board
 
-    // Start the game loop
+    displayBoard(); 
+
+
     while (true) {
-        // Print the current player's turn prompt
+      
         cout << "Player " << currentPlayer + 1 << "'s turn." << endl;
 
-        // Immediately prompt for the player's move
+     
         bool validMove = false;
         while (!validMove) {
-            if (!getInput(row, col, direction)) {
-                // If invalid input, the prompt will be shown again
-                continue;
-            }
+        if (!getInput(row, col, direction)) {
+                
+        continue;
+    }
 
-            // Adjust the row and col for the grid indexing (dots are at even indices)
-            row = (row - 1) * 2;  // Convert user input to the correct grid coordinates
-            col = (col - 1) * 2;
 
-            if (drawLine(row, col, direction)) {
-                cout << "Move successful!" << endl;
-                validMove = true;
+    row = (row - 1) * 2; 
+       col = (col - 1) * 2;
 
-                // Alternate player
-                currentPlayer = (currentPlayer + 1) % 2;
-            } else {
-                cout << "Invalid move! Please try again." << endl;
-            }
-        }
+       if (drawLine(row, col, direction)) {
+       cout << "Move successful!" << endl;
+       validMove = true;
 
-        // Display the updated board after each valid move
-        displayBoard();
-
-        // Check if the game is over
-        if (gameStatus()) {
-            break;
+              
+        currentPlayer = (currentPlayer + 1) % 2;
+    } else {
+        cout << "Invalid move! Please try again." << endl;
         }
     }
 
-    // Declare winner and end game
+        
+    displayBoard();
+
+       
+    if (gameStatus()) {
+    break;
+    }
+}
+
+   
     cout << "Game Over!" << endl;
     cout << "Player 1 Score: " << playerScores[0] << endl;
     cout << "Player 2 Score: " << playerScores[1] << endl;
@@ -157,7 +157,7 @@ void playGame() {
 }
 
 int main() {
-    makeBoard();  // Initialize board
-    playGame();  // Start the game loop
+    makeBoard();
+    playGame();  
     return 0;
 }
