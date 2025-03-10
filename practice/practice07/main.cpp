@@ -43,8 +43,8 @@ public:
     void displayInfo() const override {
     Employee::displayInfo();
     std::cout << ", Type: Hourly, Hours Worked: " << hoursWorked
-            << ", Hourly Rate: $" << hourlyRate
-            << ", Salary: $" << calculateSalary() << "\n";
+                 << ", Hourly Rate: $" << hourlyRate
+                 << ", Salary: $" << calculateSalary() << "\n";
     }
 };
 
@@ -83,28 +83,27 @@ void processEmployees(const std::string &filename) {
         double salary;
         file >> salary;
         employees.push_back(new SalariedEmployee(name, id, salary));
-        } else if (type == "Hourly") {
+    } else if (type == "Hourly") {
         double rate;
         int hours;
         file >> rate >> hours;
         employees.push_back(new HourlyEmployee(name, id, rate, hours));
-        } else if (type == "Commission") {
+    } else if (type == "Commission") {
         double baseSalary, salesAmount, commissionRate;
         file >> baseSalary >> salesAmount >> commissionRate;
         employees.push_back(new CommissionEmployee(name, id, baseSalary, salesAmount, commissionRate));
-        } else {
+    } else {
         std::cerr << "Warning: Invalid employee type in file." << std::endl;
-        }
     }
+}
     
     for (const auto &employee : employees) {
-        employee->displayInfo();
+    employee->displayInfo();
     }
     
     for (auto &employee : employees) {
-        delete employee;
+    delete employee;
     }
-    employees.clear();
 }
 
 int main() {
