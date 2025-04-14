@@ -18,16 +18,16 @@ public:
     void checkOutCopy() {
         if (availableCopies > 0) {
             availableCopies--;
-            cout << "Checked out 1 copy of " << title << endl;
+            cout << "Checked out 1 copy: " << title << endl;
         } else {
-            cout << "No copies of " << title << " are available.\n";
+            cout << "No copies for:  " << title << " are available.\n";
         }
     }
 
     void returnCopy() {
         if (availableCopies < totalCopies) {
             availableCopies++;
-            cout << "Returned 1 copy of " << title << endl;
+            cout << "Returned 1 copy of: " << title << endl;
         }
     }
 
@@ -38,7 +38,7 @@ public:
 
 int main() {
     vector<Game> games;
-    games.push_back(Game("Catan", 3));
+    games.push_back(Game("Monapoly", 3));
     games.push_back(Game("Ticket to Ride", 2));
     games.push_back(Game("Carcassonne", 1));
 
@@ -47,13 +47,13 @@ int main() {
         g.display();
     }
 
-    cout << "\nChecking out 'Catan'...\n";
+    cout << "\nChecking out 'Monapoly'...\n";
     games[0].checkOutCopy();
 
     cout << "\nAfter checkout:\n";
     games[0].display();
 
-    cout << "\nReturning 'Catan'...\n";
+    cout << "\nReturning 'Monapoly'...\n";
     games[0].returnCopy();
 
     cout << "\nAfter return:\n";
