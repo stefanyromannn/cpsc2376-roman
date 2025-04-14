@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
 using namespace std;
 
 class Game {
@@ -18,45 +19,45 @@ public:
     void checkOutCopy() {
         if (availableCopies > 0) {
             availableCopies--;
-            cout << "Checked out 1 copy: " << title << endl;
+            std::cout << "Checked out 1 copy: " << title << std::endl;
         } else {
-            cout << "No copies for:  " << title << " are available.\n";
+            std::cout << "No copies for:  " << title << " are available.\n";
         }
     }
 
     void returnCopy() {
         if (availableCopies < totalCopies) {
             availableCopies++;
-            cout << "Returned 1 copy of: " << title << endl;
+            std::cout << "Returned 1 copy of: " << title << std::endl;
         }
     }
 
     void display() const {
-        cout << title << " | Available: " << availableCopies << "/" << totalCopies << endl;
+        std::cout << title << " | Available: " << availableCopies << "/" << totalCopies << std::endl;
     }
 };
 
 int main() {
-    vector<Game> games;
-    games.push_back(Game("Monapoly", 3));
+    std::vector<Game> games;
+    games.push_back(Game("Monopoly", 3));
     games.push_back(Game("Ticket to Ride", 2));
     games.push_back(Game("Carcassonne", 1));
 
-    cout << "Board Game List:\n";
+    std::cout << "Board Game List:\n";
     for (Game& g : games) {
         g.display();
     }
 
-    cout << "\nChecking out 'Monapoly'...\n";
+    std::cout << "\nChecking out 'Monopoly'...\n";
     games[0].checkOutCopy();
 
-    cout << "\nAfter checkout:\n";
+    std::cout << "\nAfter checkout:\n";
     games[0].display();
 
-    cout << "\nReturning 'Monapoly'...\n";
+    std::cout << "\nReturning 'Monopoly'...\n";
     games[0].returnCopy();
 
-    cout << "\nAfter return:\n";
+    std::cout << "\nAfter return:\n";
     games[0].display();
 
     return 0;
