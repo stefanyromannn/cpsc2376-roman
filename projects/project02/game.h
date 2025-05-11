@@ -2,27 +2,33 @@
 #define GAME_H
 
 #include <iostream>
-#include <vector>
 
-enum class Status { ONGOING, PLAYER_1_WINS, PLAYER_2_WINS, DRAW };
-enum class BoardElement { EMPTY, PLAYER_1, PLAYER_2 };
+const int GRID_SIZE = 5;
+
+enum CellState { EMPTY, SHIP, HIT, MISS };
+enum GameStatus { ONGOING, PLAYER_1_WINS, PLAYER_2_WINS };
+enum Player { PLAYER_1, PLAYER_2 };
 
 class Game {
-public:
-    Game();  // Constructor
-    void play(int row, int col);  // Function to play a move
-    Status status() const;  // Function to check the status of the game
-    void display() const;  // Function to display the board
-
-    // Overloading << operator to print the game board
-    friend std::ostream& operator<<(std::ostream& os, const Game& game);
-
 private:
-    std::vector<std::vector<BoardElement>> board;
-    Status gameStatus;
-    bool playerTurn;  // true for player 1, false for player 2
+    CellState player1Grid[GRID_SIZE][GRID_SIZE];
+    CellState player2Grid[GRID_SIZE][GRID_SIZE];
+    Player currentPlayer;
+    GameStatus gameStatus;
+    int player1ShipsRemaining;
+    int player2ShipsRemaining;
 
-    void switchTurn();  // Switch between players after a move
+    void switchTurn();
+    bool validCoord(int row, int col) const;
+    void printGrid(const CellState grid[GRID_SIZE][GRID_SIZE], bool hideShips) const;
+
+public:
+    Game();
+    void play(int row, int col);
+    GameStatus status() const;
+    Player getCurrentPlayer() const;
+
+    friend std::ostream& operator<<(std::ostream& os, const Game& game);
 };
 
-#endif // GAME_H
+#endif
