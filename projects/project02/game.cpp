@@ -1,68 +1,38 @@
 #include "game.h"
 
-Game::Game() : xTurn(true), currentStatus(ONGOING) {
-    for (auto& row : board) {
-        row.fill(EMPTY);
-    }
+Game::Game() : gameStatus(Status::ONGOING), playerTurn(true) {
+    board = std::vector<std::vector<BoardElement>>(3, std::vector<BoardElement>(3, BoardElement::EMPTY));
 }
 
 void Game::play(int row, int col) {
-    if (row < 0 || row >= 3 || col < 0 || col >= 3 || board[row][col] != EMPTY || currentStatus != ONGOING)
-        return;
-
-    board[row][col] = xTurn ? X : O;
-
-    if (isWinningMove(board[row][col])) {
-        currentStatus = xTurn ? PLAYER_X_WINS : PLAYER_O_WINS;
-    } else if (isDraw()) {
-        currentStatus = DRAW;
+    if (board[row][col] == BoardElement::EMPTY && gameStatus == Status::ONGOING) {
+        board[row][col] = playerTurn ? BoardElement::PLAYER_1 : BoardElement::PLAYER_2;
+        switchTurn();
     }
-
-    xTurn = !xTurn;
 }
 
-Game::Status Game::status() const {
-    return currentStatus;
+Status Game::status() const {
+    // Check for a winner or draw logic (simplified here)
+    // This is where you can add the game-ending conditions
+    return gameStatus;
 }
 
-bool Game::isWinningMove(Cell player) const {
-    // Check rows, columns, diagonals
-    for (int i = 0; i < 3; ++i) {
-        if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) ||
-            (board[0][i] == player && board[1][i] == player && board[2][i] == player)) {
-            return true;
-        }
-    }
-
-    if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) ||
-        (board[0][2] == player && board[1][1] == player && board[2][0] == player)) {
-        return true;
-    }
-
-    return false;
-}
-
-bool Game::isDraw() const {
+void Game::display() const {
     for (const auto& row : board) {
-        for (Cell cell : row) {
-            if (cell == EMPTY)
-                return false;
+        for (const auto& elem : row) {
+            if (elem == BoardElement::EMPTY) std::cout << "-";
+            else if (elem == BoardElement::PLAYER_1) std::cout << "X";
+            else std::cout << "O";
         }
+        std::cout << std::endl;
     }
-    return true;
+}
+
+void Game::switchTurn() {
+    playerTurn = !playerTurn;
 }
 
 std::ostream& operator<<(std::ostream& os, const Game& game) {
-    for (const auto& row : game.board) {
-        for (const auto& cell : row) {
-            switch (cell) {
-                case Game::EMPTY: os << "."; break;
-                case Game::X:     os << "X"; break;
-                case Game::O:     os << "O"; break;
-            }
-            os << " ";
-        }
-        os << "\n";
-    }
+    game.display();
     return os;
 }
