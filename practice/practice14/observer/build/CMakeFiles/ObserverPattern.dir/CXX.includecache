@@ -6,27 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.cpp
-gradebook.h
-/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
+/workspaces/cpsc2376-roman/practice/practice14/observer/main.cpp
 iostream
 -
-
-/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
 vector
 -
-memory
--
-observer.h
-/workspaces/cpsc2376-roman/practice/practice14/observer/observer.h
-
-/workspaces/cpsc2376-roman/practice/practice14/observer/main.cpp
-gradebook.h
-/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
-memory
--
-
-/workspaces/cpsc2376-roman/practice/practice14/observer/observer.h
 memory
 -
 

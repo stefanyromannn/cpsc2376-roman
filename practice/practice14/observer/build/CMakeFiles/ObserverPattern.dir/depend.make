@@ -5,7 +5,5 @@ CMakeFiles/ObserverPattern.dir/gradebook.cpp.o: ../gradebook.cpp
 CMakeFiles/ObserverPattern.dir/gradebook.cpp.o: ../gradebook.h
 CMakeFiles/ObserverPattern.dir/gradebook.cpp.o: ../observer.h
 
-CMakeFiles/ObserverPattern.dir/main.cpp.o: ../gradebook.h
 CMakeFiles/ObserverPattern.dir/main.cpp.o: ../main.cpp
-CMakeFiles/ObserverPattern.dir/main.cpp.o: ../observer.h
 
