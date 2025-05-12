@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.cpp
+gradebook.h
+/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
+observer.h
+/workspaces/cpsc2376-roman/practice/practice14/observer/observer.h
+iostream
+-
+numeric
+-
+
+/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
+vector
+-
+memory
+-
+string
+-
+
+/workspaces/cpsc2376-roman/practice/practice14/observer/main.cpp
+gradebook.h
+/workspaces/cpsc2376-roman/practice/practice14/observer/gradebook.h
+iostream
+-
+memory
+-
+
+/workspaces/cpsc2376-roman/practice/practice14/observer/observer.h
+
