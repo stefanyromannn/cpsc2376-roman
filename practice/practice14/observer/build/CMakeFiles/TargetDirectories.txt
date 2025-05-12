@@ -1,0 +1,3 @@
+/workspaces/cpsc2376-roman/practice/practice14/observer/build/CMakeFiles/rebuild_cache.dir
+/workspaces/cpsc2376-roman/practice/practice14/observer/build/CMakeFiles/edit_cache.dir
+/workspaces/cpsc2376-roman/practice/practice14/observer/build/CMakeFiles/ObserverPattern.dir
