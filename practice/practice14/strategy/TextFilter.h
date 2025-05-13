@@ -3,7 +3,6 @@
 
 #include <string>
 
-// Interface for text filter strategies
 class TextFilter {
 public:
     virtual ~TextFilter() = default;

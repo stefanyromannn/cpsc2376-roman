@@ -14,14 +14,14 @@ public:
             size_t pos = 0;
             while ((pos = result.find(badWord, pos)) != std::string::npos) {
                 result.replace(pos, badWord.length(), "****");
-                pos += 4; // move past the "****"
+                pos += 4; 
             }
         }
         return result;
     }
 
 private:
-    const std::vector<std::string> badWords = {"badword1", "badword2", "badword3"}; // Replace with actual bad words
+    const std::vector<std::string> badWords = {"badword1", "badword2", "badword3"}; 
 };
 
-#endif // CENSORBADWORDS_H
+#endif 

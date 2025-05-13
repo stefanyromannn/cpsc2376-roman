@@ -24,7 +24,7 @@ int main() {
 
         int choice;
         std::cin >> choice;
-        std::cin.ignore(); // To ignore the newline left in the input buffer
+        std::cin.ignore(); 
 
         if (choice == 1) {
             processor.setFilter(std::make_shared<ReverseFilter>());
