@@ -49,7 +49,6 @@ int main() {
                 
                 std::cout << "Mouse clicked at (" << x << ", " << y << ")" << std::endl;
 
-                /
                 std::string result = game.play(y, x);
                 std::cout << result << std::endl;
 
